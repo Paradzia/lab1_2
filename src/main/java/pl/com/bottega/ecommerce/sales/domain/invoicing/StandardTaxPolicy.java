@@ -5,9 +5,11 @@ import pl.com.bottega.ecommerce.sharedkernel.Money;
 
 import java.math.BigDecimal;
 
-public class TaxFactory {
+public class StandardTaxPolicy implements TaxPolicy{
 
-    public Tax taxFactory(ProductType product, Money net) {
+    public Tax calculateTax(RequestItem item) {
+        Money net = item.getTotalCost();
+        ProductType product = item.getProductData().getType();
         BigDecimal ratio = null;
         String desc = null;
 
